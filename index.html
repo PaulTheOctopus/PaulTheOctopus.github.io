@@ -28,7 +28,12 @@
   <!-- Add your site or application content here -->
   <div class="container m-t">
     <div >
-      <h4>Paul Yakhontov</h4>
+      <h4>
+          <span
+          class="txt-rotate"
+          data-period="2000"
+          data-rotate='[ "Paul Yakhontov" ]'></span>
+      </h4>
       <p>Kryvyi Rih, Ukraine</p>
     </div>
     <div>
@@ -72,7 +77,7 @@
         </div>
         <div class="col-md-4"></div>
         <div class="col-md-4">
-            <p class="rightSide">June. 20 - July 2018</p>
+            <p class="rightSide">June 2017 - July 2017</p>
         </div>
       </div>
       <ul>
@@ -83,6 +88,48 @@
   </div>
 
   <!--Scripts-->
+  
+  <script>
+    var TxtRotate = function(el, toRotate, period) {
+  this.toRotate = toRotate;
+  this.el = el;
+  this.loopNum = 0;
+  this.period = parseInt(period, 10) || 2000;
+  this.txt = '';
+  this.tick();
+  this.isDeleting = false;
+};
+
+TxtRotate.prototype.tick = function() {
+  var i = this.loopNum % this.toRotate.length;
+  var fullTxt = this.toRotate[i];
+
+  if (!this.isDeleting) {
+    this.txt = fullTxt.substring(0, this.txt.length + 1);
+  }
+
+  this.el.innerHTML = '<span class="wrap">'+this.txt+'</span>';
+
+  var that = this;
+  var delta = 300 - Math.random() * 100;
+
+  setTimeout(function() {
+    that.tick();
+  }, delta);
+};
+
+window.onload = function() {
+  var elements = document.getElementsByClassName('txt-rotate');
+  for (var i=0; i<elements.length; i++) {
+    var toRotate = elements[i].getAttribute('data-rotate');
+    var period = elements[i].getAttribute('data-period');
+    if (toRotate) {
+      new TxtRotate(elements[i], JSON.parse(toRotate), period);
+    }
+  }
+};
+  </script>
+
   <script>
     var audio = new Audio('music/WeMoveLightly.mp3');
     audio.play();
