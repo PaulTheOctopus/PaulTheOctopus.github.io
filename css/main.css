@@ -16,6 +16,11 @@ html {
     line-height: 1.4;
 }
 
+html,body {
+    font-family: 'Raleway', sans-serif;
+    font-size: 18px;
+    color: #aaa
+  }
 /*
  * Remove text-shadow in selection highlight:
  * https://twitter.com/miketaylr/status/12228805301
