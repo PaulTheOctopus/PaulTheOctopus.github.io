@@ -338,3 +338,10 @@ textarea {
 .m-t {
     margin-top: 20px;
 }
+
+a:link { 
+    text-decoration: none; /* Убирает подчеркивание для ссылок */
+   } 
+a:visited { text-decoration: none; } 
+a:active { text-decoration: none; }
+a:hover { color: black;}

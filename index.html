@@ -18,6 +18,11 @@
   <link href="https://fonts.googleapis.com/css?family=Raleway:200,100,400" rel="stylesheet" type="text/css" />
 
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <style>
+  a:visited { text-decoration: none; color: black;} 
+  a:active { text-decoration: none; color: black; }
+  a:hover { color: black;}
+  </style>
 </head>
 
 <body>
@@ -27,15 +32,24 @@
 
   <!-- Add your site or application content here -->
   <div class="container m-t">
-    <div >
-      <h4>
+    <div class="row">
+      <div class="col-md-4">
+        <h4>
           <span
           class="txt-rotate"
-          data-period="2000"
+          data-period="1000"
           data-rotate='[ "Paul Yakhontov - Junior Web Developer" ]'></span>
       </h4>
-      <p>Kryvyi Rih, Ukraine</p>
+      <p>Kryvyi Rih, Ukraine<br>
+        <a href="https://github.com/PaulTheOctopus">github.com/PaulTheOctopus</a><br>
+        yahontovpavel@gmail.com<br>
+      </p>
+      </div>
+      <div class="col-md-8"></div>
     </div>
+      
+      
+    
     <div>
       <h3>SUMMARY</h3>
       <hr>
@@ -78,7 +92,7 @@
         <div class="col-md-4"></div>
         <div class="col-md-4">
             <p class="rightSide">June 2017 - July 2017</p>
-        </div>
+        </div> 
       </div>
       <ul>
         <li>Developed a web application design and make it with bootstrap</li>
@@ -86,32 +100,35 @@
       </ul>
     </div>
   </div>
-
+</div>
   <!--Scripts-->
   
   <script>
     var TxtRotate = function(el, toRotate, period) {
-  this.toRotate = toRotate;
-  this.el = el;
-  this.loopNum = 0;
-  this.period = parseInt(period, 10) || 2000;
-  this.txt = '';
-  this.tick();
-  this.isDeleting = false;
+    console.log("el = ", el, "\n");
+    console.log("toRotate = ", toRotate, "\n");
+    //console.log("period = ", period, "\n");
+    this.toRotate = toRotate;
+    this.el = el;
+    this.loopNum = 0;
+    //this.period = parseInt(period, 10) || 2000;
+    this.txt = '';
+    this.tick();
+    //this.isDeleting = false;
 };
 
 TxtRotate.prototype.tick = function() {
   var i = this.loopNum % this.toRotate.length;
   var fullTxt = this.toRotate[i];
 
-  if (!this.isDeleting) {
+  //if (!this.isDeleting) {
     this.txt = fullTxt.substring(0, this.txt.length + 1);
-  }
+  //}
 
   this.el.innerHTML = '<span class="wrap">'+this.txt+'</span>';
 
   var that = this;
-  var delta = 300 - Math.random() * 100;
+  var delta = 150 - Math.random() * 100;
 
   setTimeout(function() {
     that.tick();
@@ -120,11 +137,12 @@ TxtRotate.prototype.tick = function() {
 
 window.onload = function() {
   var elements = document.getElementsByClassName('txt-rotate');
-  for (var i=0; i<elements.length; i++) {
+  for (var i=0; i< elements.length; i++) {
     var toRotate = elements[i].getAttribute('data-rotate');
-    var period = elements[i].getAttribute('data-period');
+    console.log(toRotate);
+    //var period = elements[i].getAttribute('data-period');
     if (toRotate) {
-      new TxtRotate(elements[i], JSON.parse(toRotate), period);
+      new TxtRotate(elements[i], JSON.parse(toRotate));//, period);
     }
   }
 };
